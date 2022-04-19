@@ -85,19 +85,32 @@ export default class Post extends Component {
           <span className="Post__date">{date}</span>
         </div>
 
-        {/* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view
+        {
+          /* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view
             You can also think of it as being written as so:
               if( this.state.editing === true ) {
                 <Edit ... />
               } else {
                 <span ... ></span>
-              }
-        */}
+              }*/
+
+          <Edit
+            updatePostFn={this.props.updatePostFn}
+            text={this.props.text}
+            hideEdit={this.hideEdit}
+            id={this.props.id}
+          />
+        }
         <div className="Post__content">
           {
             // This has been pulled off of this.state via destructuring
             editing ? (
-              <Edit text="" hideEdit={this.hideEdit} />
+              <Edit
+                text={this.text}
+                hideEdit={this.hideEdit}
+                updatePostFn={this.updatePostFn}
+                id={this.id}
+              />
             ) : (
               <span className="Post__text">{text}</span>
             )
